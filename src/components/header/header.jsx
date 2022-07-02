@@ -1,34 +1,42 @@
-import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import Link from '@mui/material/Link'
+import React from 'react'
+import { Navbar, Container, Nav, Button } from 'react-bootstrap'
+import { Link } from '../styled/Link'
+import style from './header.module.css'
+import logo from './logo.png'
 
-export default function ButtonAppBar() {
+function Header(props) {
     return (
-        <Box sx={{ flexGrow: 1, marginBottom: '25px', boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)' }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link href="http://localhost:3000/" sx={{ color: 'inherit', textDecoration: 'none' }}>
-                            Home
-                        </Link>
-                    </Typography>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link href="http://localhost:3000/popular" sx={{ color: 'inherit', textDecoration: 'none' }}>
-                            Popular
-                        </Link>
-                    </Typography>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link href="http://localhost:3000/vehicle/new" sx={{ color: 'inherit', textDecoration: 'none' }}>
-                            Create
-                        </Link>
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+        <>
+            <Navbar className={style.nav}>
+                <Container>
+                    <Navbar.Brand href="/">
+                        <img alt="" src={logo} width="40" height="40" className="d-inline-block align-top" />
+                    </Navbar.Brand>
+                    <Nav>
+                        <div className={style.navmain}>
+                            <Link bold={props.home} href="/">
+                                Home
+                            </Link>
+                            <Link bold={props.vehicle} href="/vehicles">
+                                Vehicle Type
+                            </Link>
+                            <Link href="#">History</Link>
+                            <Link href="#">About</Link>
+                        </div>
+
+                        <div className={style.content}>
+                            <Button href="/login" variant="" className={style.login}>
+                                Login
+                            </Button>
+                            <Button href="/register" variant="warning" className={style.register}>
+                                Register
+                            </Button>
+                        </div>
+                    </Nav>
+                </Container>
+            </Navbar>
+        </>
     )
 }
+
+export default Header

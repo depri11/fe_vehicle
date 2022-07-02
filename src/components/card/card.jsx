@@ -1,33 +1,23 @@
 import * as React from 'react'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
-import { Button, CardActionArea, CardActions } from '@mui/material'
-import Link from '@mui/material/Link'
-import ThumbUp from '@mui/icons-material/ThumbUp'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { Card } from '../styled/Card'
 
 function Cards(props) {
+    // const navigasi = useNavigate()
+
+    // const goto = () => {
+    //     navigasi('/detail')
+    // }
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <Link href={`/vehicle/${props.id}`} color="inherit" underline="none">
-                <CardActionArea>
-                    <CardMedia component="img" height="300" width="120" image={props.img} alt={props.title} />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {props.title}
-                        </Typography>
-                        <Typography gutterBottom variant="h6" component="span" sx={{ float: 'right' }}>
-                            <ThumbUp sx={{ fontSize: '17px' }} /> {props.likes}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        View
-                    </Button>
-                </CardActions>
-            </Link>
+        <Card key={props.id} bg={props.img} backdrop={props.backdrop}>
+            <div onclick="location.href='#'">
+                <Link to={`vehicle/${props.id}`} className="LinkStyle">
+                    <h4>{props.title}</h4>
+                </Link>
+
+                <p>{props.city}</p>
+            </div>
         </Card>
     )
 }

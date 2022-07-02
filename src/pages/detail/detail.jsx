@@ -3,20 +3,25 @@ import { useParams } from 'react-router-dom'
 import style from './detail.module.css'
 import axios from 'axios'
 import Header from '../../components/header/header'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import AddShoppingCart from '@mui/icons-material/AddShoppingCart'
+import Footer from '../../components/footer/footer'
+import Button from '../../components/button/button'
 
 function Details() {
     const [data, setData] = useState({})
+    const [num, setNum] = useState(0)
     const params = useParams()
+
+    function incrementCount() {
+        setNum(num + 1)
+    }
+
+    function decrementCount() {
+        if (num == 0) {
+            setNum(0)
+        } else {
+            setNum(num - 1)
+        }
+    }
 
     useEffect(() => {
         axios
@@ -29,61 +34,64 @@ function Details() {
             })
     }, [])
 
-    const [quantity, setQuantity] = React.useState('')
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setQuantity(event.target.value)
-    }
-
     return (
         <>
-            <div className="container">
-                <Header />
-                <div className={style.content}>
-                    <Card sx={{ minWidth: 275 }}>
-                        <CardContent>{/* <CardMedia component="img" height="300" width="120" image={data.images.path} alt={data.name} /> */}</CardContent>
-                    </Card>
-                    <Card sx={{ minWidth: 275 }}>
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                {data.name}
-                            </Typography>
-                            <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
-                                {data.city}
-                            </Typography>
-                            <Typography sx={{ mb: 2 }} color="text.secondary">
-                                {data.available}
-                            </Typography>
-                            <Typography sx={{ mb: 2 }} color="text.secondary">
-                                {data.prepayment}
-                            </Typography>
-                            <Typography sx={{ mb: 2 }} color="text.secondary">
-                                Capacity: {data.capacity} person
-                            </Typography>
-                            <Typography sx={{ mb: 2 }} color="text.secondary">
-                                Type: {data.type}
-                            </Typography>
-                            <Typography sx={{ mb: 2 }} color="text.secondary">
-                                Reservation: {data.reservation}
-                            </Typography>
-                            <Typography sx={{ fontSize: 35, textAlign: 'right' }} variant="body2">
-                                Rp. {data.price}/day
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                                <InputLabel id="demo-simple-select-standard-label">Quantity</InputLabel>
-                                <Select labelId="demo-simple-select-standard-label" id="demo-simple-select-standard" value={quantity} onChange={handleChange} label="Quantity">
-                                    <MenuItem value={data.quantity}>{data.quantity}</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </CardActions>
-                        <Button sx={{ margin: '20px' }} variant="contained" endIcon={<AddShoppingCart />}>
-                            Add to cart
-                        </Button>
-                    </Card>
+            <Header />
+            <div className={style.container}>
+                <div className={style.heading}>
+                    <h2>Detail</h2>
+
+                    <div className={style.content}>
+                        <div className={style.leftside}>
+                            {data.images ? (
+                                data.images.map((e) => {
+                                    return <img src={e.url} key={e.id} alt="" className={style.image} />
+                                })
+                            ) : (
+                                <p>Users is empty</p>
+                            )}
+                            <div className={style.containersub}>
+                                <div className={style.images}>
+                                    {/* <img src={data.imgaes.path} alt={data.name} className={style.imagebelow} />
+                                <img src={data.imgaes.path} alt={data.name} className={style.imagebelow} /> */}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={style.rightside}>
+                            <div className={style.pst}>
+                                <h4>{data.name}</h4>
+                                <h5>{data.city}</h5>
+                                <p>
+                                    <br />
+                                    Available <br /> No repayment
+                                </p>
+
+                                <p>
+                                    Capacity: 1 person <br /> Type: {data.type} <br /> Reservation befor: {data.type} <br /> <br />
+                                </p>
+                            </div>
+
+                            <p className={style.price}>{data.price}/day</p>
+
+                            <div className={style.counters}>
+                                <div className={style.counter}>
+                                    <Button onClick={incrementCount} val="+" clrbg="#FFCD61" clrfnt="#393939" wdth="100px" size="40px" />
+                                    <p>{num}</p>
+                                    <Button onClick={decrementCount} val="-" clrbg="#CBCBD433" clrfnt="#393939" wdth="100px" size="40px" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={style.newdiv}>
+                            <Button val="Chat admin" clrbg="#393939" clrfnt="#FFCD61" wdth="421px" />
+                            <Button val="Reservation" clrbg="#FFCD61" clrfnt="#393939 " wdth="410px" />
+                            <Button val="Like" clrbg="#393939" clrfnt="#FFCD61" wdth="225px" />
+                        </div>
+                    </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

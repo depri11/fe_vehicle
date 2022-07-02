@@ -1,12 +1,5 @@
 .container {
-    width: 60%;
-    padding: 0;
+    width: 67%;
+    padding-top: 30px;
     margin: 50px auto;
-}
-
-.content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
