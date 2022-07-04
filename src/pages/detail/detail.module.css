@@ -30,7 +30,10 @@ a:hover {
     align-self: flex-start;
     flex-wrap: wrap;
     position: relative;
-    /* border: 1px solid gray; */
+}
+
+#detail {
+    margin-top: 3%;
 }
 
 .contentbelow {
@@ -38,8 +41,6 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* justify-content: center; */
-    /* border: 1px solid gray; */
 }
 
 .leftside {
@@ -130,7 +131,7 @@ a:hover {
 .container {
     width: 67%;
     padding-top: 20px;
-    margin: 50px auto;
+    margin: 5% auto;
 }
 
 .heading {

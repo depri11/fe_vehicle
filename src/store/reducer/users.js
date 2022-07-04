@@ -15,8 +15,15 @@ const userSlice = createSlice({
                 token: actions.payload,
             }
         },
+        addUsers(state, actions) {
+            return {
+                ...state,
+                isAuth: true,
+                data: actions.payload,
+            }
+        },
     },
 })
 
-export const { login } = userSlice.actions
+export const { login, addUsers } = userSlice.actions
 export default userSlice.reducer

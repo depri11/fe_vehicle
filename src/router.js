@@ -4,7 +4,8 @@ import Home from './pages/home/home'
 import Details from './pages/detail/detail'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
-// import Create from './pages/create/create'
+import Vehicles from './pages/vehicle/vehicles'
+
 function router() {
     return (
         <BrowserRouter>
@@ -13,6 +14,7 @@ function router() {
                 <Route path="vehicle/:id" element={<Details />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="vehicles" element={<Vehicles />} />
             </Routes>
         </BrowserRouter>
     )

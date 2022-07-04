@@ -1,12 +1,50 @@
-import * as React from 'react'
-import style from './login.module.css'
-// import Button from '../../components/button/button'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components/styled/Login'
 import { Logins } from '../../components/styled/Login'
+import { login } from '../../store/reducer/users'
+import { useDispatch, useSelector } from 'react-redux'
 import Footer from '../../components/footer/footer'
-// import Logins from '../../components/login/login'
+import useApi from '../../helpers/useApi'
+import style from './login.module.css'
 
 function Login() {
+    const [Users, setUsers] = useState({ email: 'email', password: 'password' })
+
+    const { isAuth } = useSelector((state) => state.users)
+
+    const api = useApi()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/')
+        }
+    }, [isAuth])
+
+    const onChangeInput = (event) => {
+        event.preventDefault()
+        const data = { ...Users }
+        data[event.target.name] = event.target.value
+        setUsers(data)
+    }
+
+    const goLogin = () => {
+        api.requests({
+            method: 'post',
+            url: '/auth/',
+            data: Users,
+        })
+            .then((res) => {
+                const { data } = res.data
+                dispatch(login(data.token))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <>
             <Logins>
@@ -14,15 +52,24 @@ function Login() {
                     <div className={style.display}>
                         <h1>Let's Explore The World</h1>
                         <p>Don't have account?</p>
-                        <Button clrbg="#393939" clrfnt="#FFCD61" wdth="400px" size="20px">
+                        <Button
+                            onClick={() => {
+                                navigate('/register')
+                            }}
+                            clrbg="#393939"
+                            clrfnt="#FFCD61"
+                            wdth="400px"
+                            size="20px"
+                        >
                             Sign Up
                         </Button>
                     </div>
                     <div className={style.form}>
-                        <input type="email" className="mb-4" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                        <input type="password" id="password" placeholder="Password" />
+                        <input onChange={onChangeInput} name="email" type="email" className="mb-4" aria-describedby="emailHelp" placeholder="Enter email" />
+                        <input onChange={onChangeInput} name="password" type="password" placeholder="Password" />
                         <a href="#reset">Forgot Password?</a>
                         <Button
+                            onClick={goLogin}
                             className="mt-4 mb-4"
                             clrbg="#FFCD61;"
                             clrfnt="

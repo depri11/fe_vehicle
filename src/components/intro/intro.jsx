@@ -9,10 +9,10 @@ function Intro() {
                 <Container>
                     <h1>Explore and Travel</h1>
                     <p>Vehicle Finder</p>
-                    <div class="border-ut"></div>
+                    <div className="border-ut"></div>
                     <Flex>
                         <select name="cars" id="cars">
-                            <option value="" selected disabled hidden>
+                            <option defaultValue="Location" selected disabled hidden>
                                 Location
                             </option>
                             <option value="volvo">Volvo</option>
@@ -21,7 +21,7 @@ function Intro() {
                             <option value="audi">Audi</option>
                         </select>
                         <select name="cars" id="cars">
-                            <option value="" selected disabled hidden>
+                            <option defaultValue="Type" selected disabled hidden>
                                 Type
                             </option>
                             <option value="volvo">Volvo</option>
@@ -32,7 +32,7 @@ function Intro() {
                     </Flex>
                     <Flex>
                         <select name="cars" id="cars">
-                            <option value="" selected disabled hidden>
+                            <option defaultValue="Payment" selected disabled hidden>
                                 Payment
                             </option>
                             <option value="volvo">Volvo</option>
@@ -41,7 +41,7 @@ function Intro() {
                             <option value="audi">Audi</option>
                         </select>
                         <select name="cars" id="cars">
-                            <option value="" selected disabled hidden>
+                            <option defaultValue="Date" selected disabled hidden>
                                 Date
                             </option>
                             <option value="volvo">Volvo</option>

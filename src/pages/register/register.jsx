@@ -1,12 +1,38 @@
-import * as React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import style from '../login/login.module.css'
-// import Button from '../../components/button/button'
 import { Button } from '../../components/styled/Login'
 import { Logins } from '../../components/styled/Login'
 import Footer from '../../components/footer/footer'
-// import Logins from '../../components/login/login'
+import useApi from '../../helpers/useApi'
 
-function Login() {
+function Register() {
+    const [Users, setUsers] = useState({ fullname: 'fullname', email: 'email', password: 'password' })
+
+    const api = useApi()
+    const navigate = useNavigate()
+
+    const onChangeInput = (event) => {
+        event.preventDefault()
+        const data = { ...Users }
+        data[event.target.name] = event.target.value
+        setUsers(data)
+    }
+
+    const daftar = () => {
+        api.requests({
+            method: 'POST',
+            url: '/users/',
+            data: Users,
+        })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <>
             <Logins>
@@ -14,7 +40,7 @@ function Login() {
                     <div className={style.display}>
                         <h1>Let's Explore The World</h1>
                         <p>Don't have account?</p>
-                        <Button clrbg="#393939" clrfnt="#FFCD61" wdth="400px" size="20px">
+                        <Button onClick={() => navigate('/login')} clrbg="#393939" clrfnt="#FFCD61" wdth="400px" size="20px">
                             Login
                         </Button>
                     </div>
@@ -26,10 +52,11 @@ function Login() {
                     `}
                     </style>
                     <div className="form-login">
-                        <input type="name" className="mb-4" id="name" aria-describedby="name" placeholder="Fullname" />
-                        <input type="email" className="mb-4" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                        <input type="password" id="password" placeholder="Password" />
+                        <input onChange={onChangeInput} name="fullname" type="fullname" className="mb-4" placeholder="Fullname" />
+                        <input onChange={onChangeInput} name="email" type="email" className="mb-4" placeholder="Enter email" />
+                        <input onChange={onChangeInput} name="password" type="password" placeholder="Password" />
                         <Button
+                            onClick={daftar}
                             className="mt-4 mb-4"
                             clrbg="#FFCD61;"
                             clrfnt="
@@ -51,4 +78,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register

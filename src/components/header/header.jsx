@@ -1,10 +1,15 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
 import { Link } from '../styled/Link'
+import { Dropdown } from 'react-bootstrap'
 import style from './header.module.css'
 import logo from './logo.png'
 
 function Header(props) {
+    const { isAuth, data } = useSelector((state) => state.users)
+
     return (
         <>
             <Navbar className={style.nav}>
@@ -25,12 +30,27 @@ function Header(props) {
                         </div>
 
                         <div className={style.content}>
-                            <Button href="/login" variant="" className={style.login}>
-                                Login
-                            </Button>
-                            <Button href="/register" variant="warning" className={style.register}>
-                                Register
-                            </Button>
+                            {isAuth ? (
+                                <Dropdown className="">
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        {data.fullname}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                                        <Dropdown.Item href="#logout">Logout</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            ) : (
+                                <>
+                                    <Button href="/login" variant="" className={style.login}>
+                                        Login
+                                    </Button>
+                                    <Button href="/register" variant="warning" className={style.register}>
+                                        Register
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </Nav>
                 </Container>

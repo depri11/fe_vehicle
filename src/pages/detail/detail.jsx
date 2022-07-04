@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import style from './detail.module.css'
 import axios from 'axios'
+import withAuth from '../../helpers/withAuth'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import Button from '../../components/button/button'
@@ -41,14 +42,14 @@ function Details() {
                 <div className={style.heading}>
                     <h2>Detail</h2>
 
-                    <div className={style.content}>
+                    <div className={style.content} id={style.detail}>
                         <div className={style.leftside}>
                             {data.images ? (
                                 data.images.map((e) => {
                                     return <img src={e.url} key={e.id} alt="" className={style.image} />
                                 })
                             ) : (
-                                <p>Users is empty</p>
+                                <p>Loading...</p>
                             )}
                             <div className={style.containersub}>
                                 <div className={style.images}>
@@ -96,4 +97,4 @@ function Details() {
     )
 }
 
-export default Details
+export default withAuth(Details)

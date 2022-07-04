@@ -12,7 +12,7 @@ export function Cardtesti(props) {
         <>
             {' '}
             <Card key={props.id} bg={props.image} backdrop={props.backdrop}>
-                <div onclick="location.href='#'">
+                <div>
                     <Link to={`detail/${props.id}`} className="LinkStyle">
                         <h4>{props.title}</h4>
                     </Link>

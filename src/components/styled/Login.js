@@ -48,7 +48,6 @@ export const Logins = styled.div`
         padding-left: 30px;
         border-radius: 6px;
         font-weight: 700;
-        text-transform: capitalize;
         background: rgba(255, 255, 255, 0.26);
         border: none;
         color: white;

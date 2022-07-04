@@ -15,7 +15,7 @@ export const Card = styled.div`
     background-position: center;
     display: flex;
     padding: 0px;
-    margin-bottom: 20px;
+    margin: 20px 50px 0 0;
     text-transform: capitalize;
 
     div {

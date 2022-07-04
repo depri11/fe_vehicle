@@ -1,32 +1,59 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addUsers } from '../../store/reducer/users'
 import style from './home.module.css'
-import axios from 'axios'
 import Header from '../../components/header/header'
 import Intro from '../../components/intro/intro'
 import Cards from '../../components/card/card'
 import Testimonials from '../../components/testimonial/testimonial'
 import Footer from '../../components/footer/footer'
+import useApi from '../../helpers/useApi'
 
 function Home() {
     const [prod, setProd] = useState([])
+    const { isAuth } = useSelector((state) => state.users)
+
+    const api = useApi()
+    const dispatch = useDispatch()
 
     const getDataProd = async () => {
-        try {
-            const { data } = await axios.get('https://rentalvehicle.herokuapp.com/vehicle/popular')
-            setProd(data.data)
-        } catch (error) {
-            console.log('🚀 ~ file: home.jsx ~ line 14 ~ getDataProd ~ error', error)
-        }
+        api.requests({
+            method: 'GET',
+            url: '/vehicle/popular',
+        })
+            .then((res) => {
+                const { data } = res.data
+                setProd(data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const getUser = async () => {
+        api.requests({
+            method: 'GET',
+            url: '/users/',
+        })
+            .then((res) => {
+                const { data } = res.data
+                dispatch(addUsers(data[0]))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     // didmount
     useEffect(() => {
         getDataProd()
+        if (isAuth) {
+            getUser()
+        }
     }, [])
 
     return (
         <>
-            {/* {console.log(prod[0].images[0].url)} */}
             <Header home="bold" />
             <Intro />
             <div className={style.container}>

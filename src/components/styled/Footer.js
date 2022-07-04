@@ -14,7 +14,7 @@ export const Content = styled.div`
     margin: 50px auto 0px;
     display: flex;
     flex-wrap: wrap;
-    padding: 60px 100px;
+    padding: 60px 315px;
     font-family: Mulish;
     font-size: 18px;
     color: #848484;
@@ -34,7 +34,6 @@ export const Content = styled.div`
         font-weight: 700;
         color: black;
         padding-left: 90px;
-        width: 220px;
         font-size: 18px;
     }
 
