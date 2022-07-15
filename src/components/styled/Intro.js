@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Intros = styled.div`
     height: 767px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-        url('https://s3-alpha-sig.figma.com/img/8e00/a44b/9a08bd95d830a13924f4a64ef20a65f1?Expires=1657497600&Signature=V6ZXyNF7ivmvi-nXDguWZdUzHWqRxVinwplizAKR1pWzzlRaI5EK37O~sLTdMa3Lt2hy3svons-iLzIfHaitLG6Rdwev5XBj5mzHr~0j~qpRHoOwNEOWm626Tt0JK15G1P9H1Kdat72kOuLJQ5PmcqAPQuxngeDQV9IlfPVhN2SV32nWaWjTqOCEt-rZ3nj-KWhxcEtpG3vV~ci7Qbjdov4gLU3k1VJm6D5dUXy2M8MaucZ3vBaO2qtIbvtTvwNF4pZ7OsdpErrqYhi2M1KXvt58gr~35d26tK60JpsrcOVoW2VbdXULC7CYBV0igjD0kIY1~Z6H11O3-JnH3HriyA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA');
+        url('https://s3-alpha-sig.figma.com/img/8e00/a44b/9a08bd95d830a13924f4a64ef20a65f1?Expires=1658707200&Signature=FvSn3mw9Hr9KcjZ2zMfEqqonTQnDenBbVToQ2rWIrv~vRngpYs0jvR0ZPzKcJoEdIYDQbOSq5-ozmWP77mlmY00ruBaoSNGl2rhErhHjrlAeDlwB6-nVJfJWu8pZEMp7T6zvcksip9Xg1BgWM97eFD1Ay~IOSDGCGFuh8g5dC-NgjktliCx12Eqpv6Fuz8u6HU6N-oAUHe36zEhhc0hMhNjIfmIRC1wbUTzEoDDHYOWKQSsQMBxilfHCMlLshYKd2RTc6Qhb99EZphq~GYqihhLxwKhYp1eGzVNpYTEjZxdJrnKKdBF8p3mnbXVt~R8zghntlmq~sWd0LGRy8fpc0g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA');
     //   background-color: pink;
     background-position: center;
     background-repeat: no-repeat;

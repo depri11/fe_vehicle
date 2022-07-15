@@ -33,9 +33,7 @@ a {
 
 .content {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-bottom: 50px;
+    padding-bottom: 10%;
 }
 
 .header {

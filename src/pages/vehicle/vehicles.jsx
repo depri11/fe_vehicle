@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import style from './vehicles.module.css'
-import Button from '../../components/button/button'
 import Header from '../../components/header/header'
 import Cards from '../../components/card/card'
 import Footer from '../../components/footer/footer'
@@ -10,7 +10,12 @@ function Home() {
     const [prodPopular, setProdPopular] = useState([])
     const [prodBike, setProdBike] = useState([])
     const [prodCar, setProdCar] = useState([])
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState([])
+    const [keyword, setKeyword] = useState('')
+    const navigate = useNavigate()
+
+    const [searchParams] = useSearchParams()
+    const querySearch = searchParams.get('search')
 
     const api = useApi()
 
@@ -59,28 +64,26 @@ function Home() {
     const getSearch = async () => {
         api.requests({
             method: 'GET',
-            url: `/vehicle/all?search=${search}`,
+            url: `/vehicle/all?search=${querySearch}`,
         })
             .then((res) => {
                 const { data } = res.data
-                console.log(data)
+                setSearch(data)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
 
-    const onChangeInput = (event) => {
-        event.preventDefault()
-        const data = { ...search }
-        data[event.target.name] = event.target.value
-        setSearch(data)
+    const onChangeInput = (e) => {
+        setKeyword(e.target.value)
     }
 
     useEffect(() => {
         getPopular()
         getBike()
         getCar()
+        getSearch()
     }, [])
 
     return (
@@ -92,43 +95,57 @@ function Home() {
             <div className={style.container}>
                 <div className={style.search}>
                     <input onChange={onChangeInput} name="search" className={style.input} placeholder="Search vehicle (ex: cars, cars name)" />
-                    <span onClick={getSearch} className={style.ico}>
+                    <span onClick={() => navigate(`?search=${keyword}`)} className={style.ico}>
                         <i className="fa fa-search"></i>
                     </span>
                 </div>
-                <div className={style.popular}>
-                    <div className="sub">
-                        <h2>popular in towns</h2>
-                        <a href="/vehicles">view all {'>'} </a>
+                {search ? (
+                    <div className={style.result}>
+                        <div className="sub">
+                            <h2>Search</h2>
+                        </div>
+                        <div className="content">
+                            {search.map((v) => {
+                                return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
+                            })}
+                        </div>
                     </div>
-                    <div className="content">
-                        {prodPopular.map((v) => {
-                            return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
-                        })}
+                ) : null}
+                <>
+                    <div className={style.popular}>
+                        <div className="sub">
+                            <h2>popular in towns</h2>
+                            <a href="/vehicles">view all {'>'} </a>
+                        </div>
+                        <div className="content">
+                            {prodPopular.map((v) => {
+                                return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
+                            })}
+                        </div>
                     </div>
-                </div>
-                <div className={style.cars}>
-                    <div className="sub">
-                        <h2>Cars</h2>
-                        <a href="/vehicles">view all {'>'} </a>
+                    <div className={style.cars}>
+                        <div className="sub">
+                            <h2>Cars</h2>
+                            <a href="/vehicles">view all {'>'} </a>
+                        </div>
+                        <div className="content">
+                            {prodCar.map((v) => {
+                                return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
+                            })}
+                        </div>
                     </div>
-                    <div className="content">
-                        {prodCar.map((v) => {
-                            return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
-                        })}
+                    <div className={style.bike}>
+                        <div className="sub">
+                            <h2>Bikes</h2>
+                            <a href="/vehicles">view all {'>'} </a>
+                        </div>
+                        <div className="content">
+                            {prodBike.map((v) => {
+                                return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
+                            })}
+                        </div>
                     </div>
-                </div>
-                <div className={style.bike}>
-                    <div className="sub">
-                        <h2>Bikes</h2>
-                        <a href="/vehicles">view all {'>'} </a>
-                    </div>
-                    <div className="content">
-                        {prodBike.map((v) => {
-                            return <Cards key={v.id} id={v.id} title={v.name} img={v.images[0].url} city={v.city} />
-                        })}
-                    </div>
-                </div>
+                </>
             </div>
 
             <Footer />
