@@ -22,3 +22,12 @@
     padding: 7px 30.4px !important;
     margin-left: 20px;
 }
+
+.navmain {
+    margin: 7px 35px;
+}
+
+.navmain a {
+    padding: 15px;
+    color: rgb(27, 27, 27);
+}

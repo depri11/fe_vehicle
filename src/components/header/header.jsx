@@ -1,14 +1,19 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Navbar, Container, Nav, Button } from 'react-bootstrap'
-import { Link } from '../styled/Link'
 import { Dropdown } from 'react-bootstrap'
 import style from './header.module.css'
 import logo from './logo.png'
 
 function Header(props) {
     const { isAuth, data } = useSelector((state) => state.users)
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.clear()
+        navigate('/login')
+    }
 
     return (
         <>
@@ -19,14 +24,14 @@ function Header(props) {
                     </Navbar.Brand>
                     <Nav>
                         <div className={style.navmain}>
-                            <Link bold={props.home} href="/">
+                            <Link bold={props.home} to="/">
                                 Home
                             </Link>
-                            <Link bold={props.vehicle} href="/vehicles">
+                            <Link bold={props.vehicle} to="/vehicles">
                                 Vehicle Type
                             </Link>
-                            <Link href="#">History</Link>
-                            <Link href="#">About</Link>
+                            <Link to="#">History</Link>
+                            <Link to="#">About</Link>
                         </div>
 
                         <div className={style.content}>
@@ -38,7 +43,7 @@ function Header(props) {
 
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                                        <Dropdown.Item href="#logout">Logout</Dropdown.Item>
+                                        <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             ) : (
