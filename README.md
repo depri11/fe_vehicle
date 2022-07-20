@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+<h1 align="center">Vehicle Rental</h1>
+<p align="center"><img src="https://res.cloudinary.com/dlyp1s66j/image/upload/v1658293768/logo_zqeudb.png" alt="Logo" /></p>
+<p align="center">
+    <a href="https://fe-vehiclerental.netlify.app/" target="blank">View Demo</a>
+  · <a href="https://github.com/depri11/fe_vehicle/issues">Report Bug</a>
+  · <a href="https://github.com/depri11/fe_vehicle/pulls">Request Feature</a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Built With
 
-## Available Scripts
+[![React.js](https://img.shields.io/badge/React.js-4.x-orange.svg?style=rounded-square)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-v.12.13-green.svg?style=rounded-square)](https://nodejs.org/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-v4.6.x-blue)](https://github.com/react-bootstrap/react-bootstrap)
 
-In the project directory, you can run:
 
-### `npm start`
+## Description about project
+It is an E-Commerce application that makes it easy for us to make online buying and selling transactions anywhere and anytime. Built with React Js on the front end, Node Js and Express Js on the back end. This application has two roles, such as seller and customer. As a seller in this application you can add, delete and update the items you want to sell. As a customer in this application you can add the items you want to buy into the bag to find out the details of the total payment.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Feature
+- Authentication users with JWT
+- CRUD Product
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Environmental Variables
+Provide the env value to use the api from the backend like this : 
+REACT_APP_API = http://localhost:4000
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation Steps
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+    https://github.com/depri11/fe_vehicle
+    ```
 
-### `npm run eject`
+2. Install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   yarn install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Add .env file at root folder project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```sh
+   REACT_APP_API = [Backend API]
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Run the app
 
-## Learn More
+   ```bash
+   yarn start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. You are all set!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   View the website at: http://localhost:3000
+   ```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Backend Repository
+Backend API : Vehicle - Backend [here](https://github.com/depri11/vehicle)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## License
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+© [Devri Wirlandika](https://github.com/depri11/)
